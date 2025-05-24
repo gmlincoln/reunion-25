@@ -1,12 +1,7 @@
-function updateCard(event) {
-  event.preventDefault();  // prevent page reload
-
+function updateCard() {
   const imageInput = document.getElementById('imageInput');
-  const nameInput = document.getElementById('nameInput');
-  const batchInput = document.getElementById('batchInput');
-
-  const name = nameInput.value.trim();
-  const batch = batchInput.value.trim();
+  const name = document.getElementById('nameInput').value.trim();
+  const batch = document.getElementById('batchInput').value.trim();
 
   if (name) {
     document.getElementById('name').textContent = "নামঃ " + name;
