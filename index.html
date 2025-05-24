@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reunion Card Generator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    body {
+      font-family: "Noto Sans Bengali", sans-serif;
+    }
+  </style>
+</head>
+
+<body
+  class="bg-gradient-to-br from-yellow-100 to-orange-200 min-h-screen flex flex-col items-center justify-center py-10 px-4">
+  <div class="flex flex-col lg:flex-row gap-10 items-start justify-center w-full max-w-7xl">
+
+
+
+    <!-- Controls -->
+    <form id="cardForm" onsubmit="updateCard(); return false;"
+      class="w-full max-w-md space-y-4 bg-white p-6 rounded-2xl shadow-xl border border-orange-300">
+      <h3 class="text-xl font-semibold text-gray-700 mb-4 text-center">আপনার তথ্য দিন</h3>
+      <div class="flex items-center justify-center">
+        <label for="imageInput" class="cursor-pointer text-center space-y-2">
+          <div id="imagePreview"
+            class="w-28 h-28 rounded-full bg-gray-100 border-2 border-dashed border-orange-400 flex items-center justify-center text-gray-400 hover:bg-orange-50 transition overflow-hidden">
+            <!-- Default icon -->
+            <svg id="uploadIcon" xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+            </svg>
+            <!-- Uploaded image will appear here -->
+            <img id="previewImage" src="#" alt="Uploaded Image" class="hidden w-full h-full object-contain" />
+          </div>
+          <span class="block text-sm text-gray-600 font-medium">ছবি আপলোড করুন</span>
+        </label>
+        <input type="file" id="imageInput" accept="image/*" required class="hidden" />
+      </div>
+
+      <input type="text" id="nameInput" placeholder="নাম লিখুন" required
+        class="w-full border border-gray-300 p-2 rounded-md" />
+      <input type="text" id="batchInput" placeholder="ব্যাচ লিখুন" required
+        class="w-full border border-gray-300 p-2 rounded-md" />
+
+      <div class="flex justify-between gap-2">
+        <button type="submit" class="bg-green-600 text-white px-5 py-2 rounded-lg hover:bg-green-700 shadow">আপডেট
+          করুন</button>
+        <button type="button" onclick="downloadCard()"
+          class="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 shadow">ডাউনলোড করুন</button>
+      </div>
+    </form>
+
+
+
+    <!-- Card Display -->
+    <div id="card"
+      class="bg-white shadow-2xl rounded-3xl p-6 w-full max-w-sm text-center space-y-5 border-4 border-orange-400 relative">
+
+      <!-- নিচের বামে অভিনন্দন ইমেজ -->
+      <img src="assets/flower.png" alt="অভিনন্দন" class="absolute bottom-2 top-2 w-24 h-20 object-contain z-20" />
+      <img src="assets/flower-2.png" alt="অভিনন্দন" class="absolute right-2 bottom-12 w-14 h-20 object-contain z-20" />
+
+      <h2 class="text-2xl font-extrabold text-red-800 leading-relaxed drop-shadow-md">
+        ১ম পুনর্মিলনী ২০২৫<br>
+        <span class="text-xl text-orange-600 block">মুশুদ্দি আফাজ উদ্দিন উচ্চ বিদ্যালয়</span>
+      </h2>
+
+      <div class="flex justify-center">
+        <img id="profileImg" src="assets/image.png" alt="Profile Picture"
+          class="w-36 h-36 rounded-full border-4 border-yellow-500 object-cover shadow-md" />
+      </div>
+      <div
+        class="bg-gradient-to-br from-slate-700 via-gray-800 to-slate-900 border border-gray-700 rounded-3xl p-6 flex flex-col items-center text-white space-y-3 w-full max-w-xs transition-all">
+
+        <h3 id="name" class="text-xl font-extrabold tracking-wide flex items-center gap-2">
+          নামঃ ....................
+        </h3>
+
+        <h4 id="batch" class="text-lg font-semibold flex items-center gap-2">
+          ব্যাচঃ ................
+        </h4>
+      </div>
+
+
+
+
+
+      <p class="text-orange-600 font-semibold text-md">
+        পুনর্মিলনী অনুষ্ঠানে রেজিস্ট্রেশন<br>
+        সম্পন্ন করায় আপনাকে আন্তরিক অভিনন্দন
+      </p>
+
+      <footer class="text-xs text-gray-500 mt-4 pt-4 border-t border-gray-200">
+        © ২০২৫ মুশুদ্দি আফাজ উদ্দিন উচ্চ বিদ্যালয় পুনর্মিলনী কমিটি<br>
+        <span class="italic"> <i class="fa-solid fa-laptop-code"></i> Developed by Golam Maula Lincoln,
+          Batch-2013</span>
+      </footer>
+    </div>
+
+
+
+
+  </div>
+
+  <!-- External Script -->
+  <script src="script.js"></script>
+</body>
+
+</html>
