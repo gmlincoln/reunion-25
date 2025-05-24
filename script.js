@@ -4,10 +4,10 @@ function updateCard() {
   const batch = document.getElementById('batchInput').value.trim();
 
   if (name) {
-    document.getElementById('name').textContent = "নামঃ- " + name;
+    document.getElementById('name').textContent = name;
   }
   if (batch) {
-    document.getElementById('batch').textContent = "ব্যাচঃ- " + batch;
+    document.getElementById('batch').textContent = "ব্যাচঃ " + batch;
   }
 
   if (imageInput.files && imageInput.files[0]) {
